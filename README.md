@@ -12,6 +12,7 @@ Example:
 + Clicking on the button "Clear": users can remove all the characters from network.
 + Hovering on the character: the name of the character will be revealed.
 + By dragging the little circle and drop it in the big circle, the character will be added to the network.
++ By pressing key 1~7 on the keyboard, users can switch between episodes.
 + ...etc.
 
 ### Visualization
