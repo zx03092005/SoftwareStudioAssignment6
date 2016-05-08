@@ -143,6 +143,17 @@ public class MainApplet extends PApplet{
 			text(nowChar.getName(), mouseX, mouseY);
 		}
 		
+		for(Character i : chacArr) {
+			if(i.isInCircle() && i.getColor() != unhex("FF808080")) {
+				fill(unhex("FF00E3E3"));
+				noStroke();
+				rect(i.x, i.y-20, i.getName().length()*12, 40, 7);
+				
+				textSize(18);
+				fill(0, 102, 153, 204);
+				text(i.getName(), i.x, i.y);
+			}
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
