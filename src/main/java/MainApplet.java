@@ -31,6 +31,7 @@ public class MainApplet extends PApplet{
 	private final static int width = 1200, height = 650;
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
+	private Character nowChar;
 
 	private ControlP5 cp5;
 	public void setup() {
@@ -45,6 +46,11 @@ public class MainApplet extends PApplet{
 		background(255);
 		for(Character i: chacArr){
 			i.display();
+			
+			if( dist(mouseX, mouseY, i.x, i.y) < 35/2){
+				nowChar = i;
+				
+			}
 		}
 		
 		fill(255,255,255);
@@ -55,6 +61,16 @@ public class MainApplet extends PApplet{
 		textSize(48);
 		text(s, 500, 50);
 		
+		if(nowChar != null && dist(mouseX, mouseY, nowChar.x, nowChar.y) < 35/2){
+			fill(unhex("FF00E3E3"));
+			noStroke();
+			rect(mouseX, mouseY-20, nowChar.getName().length()*12, 40, 7);
+			
+			
+			textSize(18);
+			fill(0, 102, 153, 204);
+			text(nowChar.getName(), mouseX, mouseY);			
+		}
 		
 	}
 	
@@ -128,5 +144,5 @@ public class MainApplet extends PApplet{
 	
 	}
 	
-
+	
 }
