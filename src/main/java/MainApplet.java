@@ -170,5 +170,20 @@ public class MainApplet extends PApplet{
 		}
 	}
 	
+	public void mouseReleased(){
+		if(tempChar != null){
+			if( dist(tempChar.x, tempChar.y, 600, 350)< 500/2 ){
+				
+				
+			}else{
+				animate = Ani.to(tempChar, (float) 0.1, "x", tempChar.getStartX());
+				animate = Ani.to(tempChar, (float) 0.1, "y", tempChar.getStartY());
+				
+			}
+		}	tempChar = null;
+		
+		
+	}
+	
 	
 }
