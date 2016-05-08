@@ -50,15 +50,18 @@ public class MainApplet extends PApplet{
 		for(Character i: chacArr){
 			i.display();
 			
-			if( dist(mouseX, mouseY, i.x, i.y) < 35/2){
+			if(dist(mouseX, mouseY, i.x, i.y) < 35/2)
 				nowChar = i;
-				onTheNode = true;
-			}else{
+			else
 				animate =  Ani.to(i, (float)0.1, "diameter", 35);
-				onTheNode = false;
-			}
 		}
 		
+		for(Character i : chacArr) {
+			if(dist(i.x, i.y, mouseX, mouseY) < 35) {
+				onTheNode = true;
+				break;
+			} else onTheNode = false;
+		}
 		
 		fill(255,255,255);
 		ellipse(600,350,500, 500);
