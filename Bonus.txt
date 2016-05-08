@@ -3,3 +3,6 @@ add background music.
 add sound on/off button.
 if the mouse moves in the circle, enlarge the circle weight.
 if the main character is on the circle, show its name.
+
+
+https://github.com/zx03092005/SoftwareStudioAssignment6.git
