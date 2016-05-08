@@ -9,11 +9,15 @@ import processing.core.PApplet;
 public class Character {
 	
 	private MainApplet parent;
+	private String name;
+	private String colour;
+	
 
-	public Character(MainApplet parent){
+	public Character(MainApplet parent, String name, String colour){
 
 		this.parent = parent;
-		
+		this.name = name;
+		this.colour = colour;
 	}
 
 	public void display(){
