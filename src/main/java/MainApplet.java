@@ -36,14 +36,36 @@ public class MainApplet extends PApplet{
 	private boolean onTheNode;
 	private Ani animate;
 
-	private ControlP5 cp5;
+	private ControlP5 cp5;  
 	public void setup() {
 		animate.init(this);
 		size(width, height);
 		smooth();
 		loadData();
+		cp5 = new ControlP5(this);
+		cp5.addButton("buttonA").setLabel("Add All").setPosition(900, 100).setSize(200,100);
+		cp5.getController("buttonA").getCaptionLabel().setSize(36);
+		cp5.addButton("buttonB").setLabel("Clear").setPosition(900, 400).setSize(200,100);
+		cp5.getController("buttonB").getCaptionLabel().setSize(36);
 		
 	}
+	
+	public void buttonA(){
+		for(Character i: chacArr){
+			i.setInCircle(true);
+		}
+		drawOnCircle();
+	}
+	public void buttonB(){
+		for(Character i: chacArr){
+			i.setInCircle(false);
+		animate = Ani.to(i, (float)0.1, "x", i.getStartX());
+		animate = Ani.to(i, (float)0.1, "y", i.getStartY());
+		}
+		
+	}
+	
+	
 	
 	public void drawOnCircle(){
 		int counter = 0;
