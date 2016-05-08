@@ -32,7 +32,7 @@ public class MainApplet extends PApplet{
 	private final static int width = 1200, height = 650;
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
-	private Character nowChar;
+	private Character nowChar, tempChar;
 	private boolean onTheNode;
 	private Ani animate;
 
@@ -150,6 +150,21 @@ public class MainApplet extends PApplet{
 			chacArr.get(src).addTarget(chacArr.get(tar), val);
 		}
 	
+	}
+	
+	public void mousePressed(){
+		if(onTheNode){
+			tempChar = nowChar;
+			
+		}
+		
+	}
+	
+	public void mouseDragged(){
+		if(tempChar!=null){
+			tempChar.x = mouseX;
+			tempChar.y = mouseY;
+		}
 	}
 	
 	
