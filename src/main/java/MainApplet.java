@@ -28,22 +28,42 @@ public class MainApplet extends PApplet{
 	}
 
 	public void draw() {
-
+		for(Character i: chacArr){
+			i.display();
+		}
+		
 	}
 
 	private void loadData(){
 		JSONObject var;
-		JSONArray arr;
+		JSONArray arrN;
+		JSONArray arrL;
 		
 		var = loadJSONObject(path+file);
-		arr = var.getJSONArray("nodes");
+		arrN = var.getJSONArray("nodes");
 		
-		for(int i=0; i<arr.size(); i++){
-			JSONObject temp = arr.getJSONObject(i);
+		for(int i=0; i<arrN.size(); i++){
+			JSONObject temp = arrN.getJSONObject(i);
 			String n = temp.getString("name");
 			String c = temp.getString("colour");
-			chacArr.add(new Character(this, n, c));
+			float x = 50;
+			x = x+ 50*((i)/10);
+			float y = 50;
+			y = y+ 50*((i)%10);
+			
+			chacArr.add(new Character(this, n, c, x, y));
 		}
+		
+		arrL = var.getJSONArray("links");
+		for(int i=0; i<arrL.size(); i++){
+			JSONObject tm = arrL.getJSONObject(i);
+			int src = tm.getInt("source");
+			int tar = tm.getInt("target");
+			Integer val = tm.getInt("value"); 
+			
+			chacArr.get(src).addTarget(chacArr.get(tar), val);
+		}
+	
 	}
 
 }
