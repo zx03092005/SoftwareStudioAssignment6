@@ -214,7 +214,6 @@ public class MainApplet extends PApplet{
 	public void mousePressed(){
 		if(onTheNode){
 			tempChar = nowChar;
-			
 		}
 		
 	}
@@ -228,6 +227,7 @@ public class MainApplet extends PApplet{
 	
 	public void mouseReleased(){
 		if(tempChar != null){
+			 
 			if( dist(tempChar.x, tempChar.y, 600, 350)< 500/2 ){
 				tempChar.setInCircle(true);
 				drawOnCircle();
