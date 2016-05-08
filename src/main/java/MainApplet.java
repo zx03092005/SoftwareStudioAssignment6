@@ -44,9 +44,33 @@ public class MainApplet extends PApplet{
 		loadData();
 		
 	}
+	
+	public void drawOnCircle(){
+		int counter = 0;
+		for(Character i: chacArr){
+			if(i.isInCircle()){
+				counter++;
+			}
+		}
+		float angle = 0;
+		for(Character i: chacArr){
+			if(i.isInCircle()){
+				i.x = 600 + 250*cos(angle);
+				i.y = 350 + 250*sin(angle);
+				angle += 2*PI/counter;
+			}
+		}
+		
+	}
 
 	public void draw() {
 		background(255);
+		
+		strokeWeight(3);
+		fill(255,255,255);
+		ellipse(600,350,500, 500);
+		strokeWeight(0);
+		
 		for(Character i: chacArr){
 			i.display();
 			
@@ -63,19 +87,16 @@ public class MainApplet extends PApplet{
 			} else onTheNode = false;
 		}
 		
-		fill(255,255,255);
-		ellipse(600,350,500, 500);
-		
 		String s = "Star Wars "+ episode;
 		fill(50);
 		textSize(48);
 		text(s, 500, 50);
 		
 		if(nowChar != null && dist(mouseX, mouseY, nowChar.x, nowChar.y) < 35/2){
-			animate =animate = Ani.to(nowChar, (float)0.5, "diameter", 45);
+			animate = Ani.to(nowChar, (float)0.5, "diameter", 45);
 			
 			fill(unhex("FF00E3E3"));
-			noStroke();
+			
 			rect(mouseX, mouseY-20, nowChar.getName().length()*12, 40, 7);
 			
 			textSize(18);
@@ -173,12 +194,14 @@ public class MainApplet extends PApplet{
 	public void mouseReleased(){
 		if(tempChar != null){
 			if( dist(tempChar.x, tempChar.y, 600, 350)< 500/2 ){
-				
+				tempChar.setInCircle(true);
+				drawOnCircle();
 				
 			}else{
 				animate = Ani.to(tempChar, (float) 0.1, "x", tempChar.getStartX());
 				animate = Ani.to(tempChar, (float) 0.1, "y", tempChar.getStartY());
-				
+				tempChar.setInCircle(false);
+				drawOnCircle();
 			}
 		}	tempChar = null;
 		
