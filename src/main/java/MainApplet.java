@@ -135,7 +135,7 @@ public class MainApplet extends PApplet{
 			animate = Ani.to(nowChar, (float)0.5, "diameter", 45);
 			
 			fill(unhex("FF00E3E3"));
-			
+			noStroke();
 			rect(mouseX, mouseY-20, nowChar.getName().length()*12, 40, 7);
 			
 			textSize(18);
