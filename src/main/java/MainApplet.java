@@ -103,11 +103,12 @@ public class MainApplet extends PApplet{
 	public void draw() {
 		background(255);
 		
-		strokeWeight(3);
 		fill(255,255,255);
+		if(dist(mouseX, mouseY, 600, 350) <= 250) strokeWeight(7);
+		else strokeWeight(3);
 		ellipse(600,350,500, 500);
-		strokeWeight(0);
 		
+		strokeWeight(0);
 		for(Character i: chacArr){
 			i.display();
 			
