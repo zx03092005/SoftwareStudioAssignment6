@@ -45,7 +45,6 @@ public class MainApplet extends PApplet{
 		animate.init(this);
 		minim = new Minim(this);
 		bgm = minim.loadFile(this.getClass().getResource("/main/resources/bgm.mp3").getPath());
-		bgm.play();
 		
 		size(width, height);
 		smooth();
@@ -55,9 +54,10 @@ public class MainApplet extends PApplet{
 		cp5 = new ControlP5(this);
 		cp5.addButton("buttonA").setLabel("Add All").setPosition(900, 100).setSize(200,100);
 		cp5.getController("buttonA").getCaptionLabel().setSize(36);
-		cp5.addButton("buttonB").setLabel("Clear").setPosition(900, 400).setSize(200,100);
+		cp5.addButton("buttonB").setLabel("Clear").setPosition(900, 300).setSize(200,100);
 		cp5.getController("buttonB").getCaptionLabel().setSize(36);
-		
+		cp5.addButton("buttonC").setLabel("Sound").setPosition(900, 500).setSize(200,100);
+		cp5.getController("buttonC").getCaptionLabel().setSize(36);
 		
 		
 	}
@@ -68,16 +68,19 @@ public class MainApplet extends PApplet{
 		}
 		drawOnCircle();
 	}
+	
 	public void buttonB(){
 		for(Character i: chacArr){
 			i.setInCircle(false);
 		animate = Ani.to(i, (float)0.1, "x", i.getStartX());
 		animate = Ani.to(i, (float)0.1, "y", i.getStartY());
 		}
-		
 	}
 	
-	
+	public void buttonC() {
+		if(bgm.isPlaying()) bgm.pause();
+		else bgm.play();
+	}
 	
 	public void drawOnCircle(){
 		int counter = 0;
