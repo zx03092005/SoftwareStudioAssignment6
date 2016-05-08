@@ -55,4 +55,12 @@ public class Character {
 	public float getStartY() {
 		return this.startY;
 	}
+	
+	public boolean isInCircle() {
+		return this.inCircle;
+	}
+	
+	public int getColor() {
+		return this.color;
+	}
 }
