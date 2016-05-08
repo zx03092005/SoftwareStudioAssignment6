@@ -47,7 +47,14 @@ public class MainApplet extends PApplet{
 			i.display();
 		}
 		
-		ellipse(1000,500,300, 300);
+		fill(255,255,255);
+		ellipse(600,350,500, 500);
+		
+		String s = "Star Wars "+ episode;
+		fill(50);
+		textSize(48);
+		text(s, 500, 50);
+		
 		
 	}
 	
