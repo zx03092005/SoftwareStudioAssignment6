@@ -2,7 +2,9 @@ package main.java;
 
 import java.util.ArrayList;
 
+import de.looksgood.ani.easing.Circ;
 import processing.core.PApplet;
+import processing.core.PShape;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -19,6 +21,7 @@ public class MainApplet extends PApplet{
 	private final static int width = 1200, height = 650;
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
+	
 	public void setup() {
 
 		size(width, height);
@@ -31,6 +34,8 @@ public class MainApplet extends PApplet{
 		for(Character i: chacArr){
 			i.display();
 		}
+		
+		ellipse(1000,500,300, 300);
 		
 	}
 
@@ -65,5 +70,6 @@ public class MainApplet extends PApplet{
 		}
 	
 	}
+	
 
 }
