@@ -3,6 +3,7 @@ package main.java;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import de.looksgood.ani.Ani;
 import de.looksgood.ani.easing.Circ;
 import controlP5.ControlP5;
 import processing.core.PApplet;
@@ -32,10 +33,11 @@ public class MainApplet extends PApplet{
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
 	private Character nowChar;
+	private Ani animate;
 
 	private ControlP5 cp5;
 	public void setup() {
-
+		animate.init(this);
 		size(width, height);
 		smooth();
 		loadData();
@@ -50,6 +52,8 @@ public class MainApplet extends PApplet{
 			if( dist(mouseX, mouseY, i.x, i.y) < 35/2){
 				nowChar = i;
 				
+			}else{
+				animate =  Ani.to(i, (float)0.1, "diameter", 35);
 			}
 		}
 		
@@ -62,14 +66,15 @@ public class MainApplet extends PApplet{
 		text(s, 500, 50);
 		
 		if(nowChar != null && dist(mouseX, mouseY, nowChar.x, nowChar.y) < 35/2){
+			animate =animate = Ani.to(nowChar, (float)0.1, "diameter", 45);
+			
 			fill(unhex("FF00E3E3"));
 			noStroke();
 			rect(mouseX, mouseY-20, nowChar.getName().length()*12, 40, 7);
 			
-			
 			textSize(18);
 			fill(0, 102, 153, 204);
-			text(nowChar.getName(), mouseX, mouseY);			
+			text(nowChar.getName(), mouseX, mouseY);
 		}
 		
 	}
