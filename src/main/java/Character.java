@@ -15,7 +15,7 @@ public class Character {
 	private String colour;
 	private int color;
 	public float x, y;
-	private float startX, startY;
+	private float startX, startY, diameter = 35;
 	private boolean inCircle;
 	private ArrayList<Character> targets = new ArrayList<Character>();
 	private ArrayList<Integer> values= new ArrayList<Integer>();
@@ -33,7 +33,10 @@ public class Character {
 	}
 
 	public void display(){
-
+		this.parent.fill(color);
+		this.parent.stroke(color);
+		this.parent.ellipse(x, y, diameter, diameter);
+		
 	}
 	
 	public void addTarget(Character target, Integer value) {
