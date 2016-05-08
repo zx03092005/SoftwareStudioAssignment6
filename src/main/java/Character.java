@@ -34,6 +34,18 @@ public class Character {
 		this.parent.stroke(color);
 		this.parent.ellipse(x, y, diameter, diameter);
 		
+		if(inCircle) {
+			for(Character i : targets) {
+				this.parent.noFill();
+				this.parent.stroke(0);
+				this.parent.strokeWeight(values.get(targets.indexOf(i)) / (float) 5);
+				
+				float a = (600 + (x + i.x) / 2) / 2;
+				float b = (350 + (y + i.y) / 2) / 2;
+				if(i.isInCircle())this.parent.bezier(x, y, a, b, a, b, i.x, i.y);
+				
+			}
+		}
 	}
 	
 	public void addTarget(Character target, Integer value) {
