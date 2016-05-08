@@ -104,7 +104,8 @@ public class MainApplet extends PApplet{
 		background(255);
 		
 		fill(255,255,255);
-		if(dist(mouseX, mouseY, 600, 350) <= 250) strokeWeight(7);
+		stroke(0);
+		if(dist(mouseX, mouseY, 600, 350) <= 250) strokeWeight(5);
 		else strokeWeight(3);
 		ellipse(600,350,500, 500);
 		

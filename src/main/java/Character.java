@@ -43,9 +43,9 @@ public class Character {
 			}
 		}
 		this.parent.fill(color);
-		this.parent.stroke(color);
+		this.parent.noStroke();
 		this.parent.ellipse(x, y, diameter, diameter);
-		
+
 	}
 	
 	public void addTarget(Character target, Integer value) {
