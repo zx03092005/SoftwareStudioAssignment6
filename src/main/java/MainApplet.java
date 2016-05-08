@@ -11,7 +11,6 @@ import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
-
 /**
 * This class is for sketching outcome using Processing
 * You can do major UI control and some visualization in this class.  
@@ -40,6 +39,7 @@ public class MainApplet extends PApplet{
 	private AudioPlayer bgm;
 	private ControlP5 cp5;  
 	
+	
 	@SuppressWarnings("static-access")
 	public void setup() {
 		animate.init(this);
@@ -52,11 +52,11 @@ public class MainApplet extends PApplet{
 		
 		
 		cp5 = new ControlP5(this);
-		cp5.addButton("buttonA").setLabel("Add All").setPosition(900, 100).setSize(200,100);
+		cp5.addButton("buttonA").setLabel("Add All").setPosition(970, 100).setSize(200,100);
 		cp5.getController("buttonA").getCaptionLabel().setSize(36);
-		cp5.addButton("buttonB").setLabel("Clear").setPosition(900, 300).setSize(200,100);
+		cp5.addButton("buttonB").setLabel("Clear").setPosition(970, 300).setSize(200,100);
 		cp5.getController("buttonB").getCaptionLabel().setSize(36);
-		cp5.addButton("buttonC").setLabel("Sound").setPosition(900, 500).setSize(200,100);
+		cp5.addButton("buttonC").setLabel("Sound").setPosition(970, 500).setSize(200,100);
 		cp5.getController("buttonC").getCaptionLabel().setSize(36);
 		
 		

@@ -30,6 +30,10 @@ public class Character {
 	}
 
 	public void display(){
+		this.parent.fill(color);
+		this.parent.noStroke();
+		this.parent.ellipse(x, y, diameter, diameter);
+		
 		if(inCircle) {
 			for(Character i : targets) {
 				this.parent.noFill();
@@ -42,9 +46,6 @@ public class Character {
 				
 			}
 		}
-		this.parent.fill(color);
-		this.parent.noStroke();
-		this.parent.ellipse(x, y, diameter, diameter);
 
 	}
 	
