@@ -33,6 +33,7 @@ public class MainApplet extends PApplet{
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
 	private Character nowChar;
+	private boolean onTheNode;
 	private Ani animate;
 
 	private ControlP5 cp5;
@@ -57,6 +58,13 @@ public class MainApplet extends PApplet{
 			}
 		}
 		
+		for(Character i : chacArr) {
+			if(dist(i.x, i.y, mouseX, mouseY) < (float)20) {
+				onTheNode = true;
+				break;
+			} else onTheNode = false;
+		}
+		
 		fill(255,255,255);
 		ellipse(600,350,500, 500);
 		
@@ -66,7 +74,7 @@ public class MainApplet extends PApplet{
 		text(s, 500, 50);
 		
 		if(nowChar != null && dist(mouseX, mouseY, nowChar.x, nowChar.y) < 35/2){
-			animate =animate = Ani.to(nowChar, (float)0.1, "diameter", 45);
+			animate =animate = Ani.to(nowChar, (float)0.5, "diameter", 45);
 			
 			fill(unhex("FF00E3E3"));
 			noStroke();
