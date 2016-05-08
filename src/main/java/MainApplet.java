@@ -1,7 +1,9 @@
 package main.java;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
@@ -15,10 +17,19 @@ import processing.data.JSONObject;
 public class MainApplet extends PApplet{
 	private String path = "main/resources/";
 	private String file = "starwars-episode-1-interactions.json";
-	
+	private String episode1 = "starwars-episode-1-interactions.json",
+				   episode2 = "starwars-episode-2-interactions.json",
+				   episode3 = "starwars-episode-3-interactions.json",
+				   episode4 = "starwars-episode-4-interactions.json",
+				   episode5 = "starwars-episode-5-interactions.json",
+				   episode6 = "starwars-episode-6-interactions.json",
+				   episode7 = "starwars-episode-7-interactions.json";
+	private int episode = 1;
+					
 	private final static int width = 1200, height = 650;
 	
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
+	private ControlP5 cp5;
 	public void setup() {
 
 		size(width, height);
@@ -28,13 +39,52 @@ public class MainApplet extends PApplet{
 	}
 
 	public void draw() {
+		background(255);
 		for(Character i: chacArr){
 			i.display();
 		}
 		
 	}
+	
+	public void keyPressed() {
+		switch(keyEvent.getKeyCode()) {
+			case KeyEvent.VK_1 :
+				episode = 1;
+				file = episode1;
+				break;
+			case KeyEvent.VK_2 :
+				episode = 2;
+				file = episode2;
+				break;
+			case KeyEvent.VK_3 :
+				episode = 3;
+				file = episode3;
+				break;
+			case KeyEvent.VK_4 :
+				episode = 4;
+				file = episode4;
+				break;
+			case KeyEvent.VK_5 :
+				episode = 5;
+				file = episode5;
+				break;
+			case KeyEvent.VK_6 :
+				episode = 6;
+				file = episode6;
+				break;
+			case KeyEvent.VK_7 :
+				episode = 7;
+				file = episode7;
+				break;
+			default :
+				file = episode1;
+				break;
+		}
+		setup();
+	}
 
 	private void loadData(){
+		chacArr.clear();
 		JSONObject var;
 		JSONArray arrN;
 		JSONArray arrL;
