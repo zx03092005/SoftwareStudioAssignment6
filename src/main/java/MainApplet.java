@@ -4,10 +4,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import de.looksgood.ani.Ani;
-import de.looksgood.ani.easing.Circ;
 import controlP5.ControlP5;
+import ddf.minim.AudioPlayer;
+import ddf.minim.*;
 import processing.core.PApplet;
-import processing.core.PShape;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -34,19 +34,31 @@ public class MainApplet extends PApplet{
 	private ArrayList<Character> chacArr =  new ArrayList<Character>();
 	private Character nowChar, tempChar;
 	private boolean onTheNode;
+	
 	private Ani animate;
-
+	private Minim minim;
+	private AudioPlayer bgm;
 	private ControlP5 cp5;  
+	
+	@SuppressWarnings("static-access")
 	public void setup() {
 		animate.init(this);
+		minim = new Minim(this);
+		bgm = minim.loadFile(this.getClass().getResource("/main/resources/bgm.mp3").getPath());
+		bgm.play();
+		
 		size(width, height);
 		smooth();
 		loadData();
+		
+		
 		cp5 = new ControlP5(this);
 		cp5.addButton("buttonA").setLabel("Add All").setPosition(900, 100).setSize(200,100);
 		cp5.getController("buttonA").getCaptionLabel().setSize(36);
 		cp5.addButton("buttonB").setLabel("Clear").setPosition(900, 400).setSize(200,100);
 		cp5.getController("buttonB").getCaptionLabel().setSize(36);
+		
+		
 		
 	}
 	
@@ -128,6 +140,7 @@ public class MainApplet extends PApplet{
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void keyPressed() {
 		switch(keyEvent.getKeyCode()) {
 			case KeyEvent.VK_1 :
