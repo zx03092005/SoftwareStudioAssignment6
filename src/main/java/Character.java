@@ -60,4 +60,8 @@ public class Character {
 	public int getColor() {
 		return this.color;
 	}
+	
+	public void setInCircle(boolean inCircle) {
+		this.inCircle = inCircle;
+	}
 }
