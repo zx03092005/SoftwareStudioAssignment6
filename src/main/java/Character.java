@@ -18,10 +18,12 @@ public class Character {
 	private ArrayList<Integer> values= new ArrayList<Integer>();
 
 	@SuppressWarnings("static-access")
+	// initial all variables of character
 	public Character(MainApplet parent, String name, String colour, float x, float y){
 
 		this.parent = parent;
 		this.name = name;
+		// decode the color from string to int
 		this.color = this.parent.unhex(colour.substring(1));
 		
 		this.x = this.startX = x;
@@ -30,10 +32,12 @@ public class Character {
 	}
 
 	public void display(){
+		// draw the circle
 		this.parent.fill(color);
 		this.parent.noStroke();
 		this.parent.ellipse(x, y, diameter, diameter);
 		
+		// check if the targets of the node is on the big circle when the character is on the big circle
 		if(inCircle) {
 			for(Character i : targets) {
 				this.parent.noFill();

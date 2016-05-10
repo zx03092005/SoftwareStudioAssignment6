@@ -42,7 +42,10 @@ public class MainApplet extends PApplet{
 	
 	@SuppressWarnings("static-access")
 	public void setup() {
+		// initial the animation
 		animate.init(this);
+		
+		// initial the bgm
 		minim = new Minim(this);
 		bgm = minim.loadFile(this.getClass().getResource("/main/resources/bgm.mp3").getPath());
 		
@@ -50,7 +53,7 @@ public class MainApplet extends PApplet{
 		smooth();
 		loadData();
 		
-		
+		// initial the buttons
 		cp5 = new ControlP5(this);
 		cp5.addButton("buttonA").setLabel("Add All").setPosition(970, 100).setSize(200,100);
 		cp5.getController("buttonA").getCaptionLabel().setSize(36);
@@ -62,6 +65,7 @@ public class MainApplet extends PApplet{
 		
 	}
 	
+	// the button of add all characters to the circle
 	public void buttonA(){
 		for(Character i: chacArr){
 			i.setInCircle(true);
@@ -69,6 +73,7 @@ public class MainApplet extends PApplet{
 		drawOnCircle();
 	}
 	
+	// the button of clear all characters on the circle
 	public void buttonB(){
 		for(Character i: chacArr){
 			i.setInCircle(false);
@@ -77,11 +82,13 @@ public class MainApplet extends PApplet{
 		}
 	}
 	
+	// the button to play / pause the bgm 
 	public void buttonC() {
 		if(bgm.isPlaying()) bgm.pause();
 		else bgm.play();
 	}
 	
+	// count the number of character on the circle and re-locate each character
 	public void drawOnCircle(){
 		int counter = 0;
 		for(Character i: chacArr){
@@ -103,12 +110,15 @@ public class MainApplet extends PApplet{
 	public void draw() {
 		background(255);
 		
+		// draw the big circle.
+		// if the mouse is in the circle, the circle will be highlighted
 		fill(255,255,255);
 		stroke(0);
 		if(dist(mouseX, mouseY, 600, 350) <= 250) strokeWeight(5);
 		else strokeWeight(3);
 		ellipse(600,350,500, 500);
 		
+		// draw the characters and it will be highlighted if the mouse is on it
 		strokeWeight(0);
 		for(Character i: chacArr){
 			i.display();
@@ -119,6 +129,7 @@ public class MainApplet extends PApplet{
 				animate =  Ani.to(i, (float)0.1, "diameter", 35);
 		}
 		
+		// check the mouse on which node
 		for(Character i : chacArr) {
 			if(dist(i.x, i.y, mouseX, mouseY) < 35) {
 				onTheNode = true;
@@ -126,11 +137,13 @@ public class MainApplet extends PApplet{
 			} else onTheNode = false;
 		}
 		
+		// draw the title
 		String s = "Star Wars "+ episode;
 		fill(50);
 		textSize(48);
 		text(s, 500, 50);
 		
+		// show the name of a character if the mouse is on that
 		if(nowChar != null && dist(mouseX, mouseY, nowChar.x, nowChar.y) < 35/2){
 			animate = Ani.to(nowChar, (float)0.5, "diameter", 45);
 			
@@ -143,6 +156,7 @@ public class MainApplet extends PApplet{
 			text(nowChar.getName(), mouseX, mouseY);
 		}
 		
+		// when a main character on the circle, which is not gray, it will show the name of it
 		for(Character i : chacArr) {
 			if(i.isInCircle() && i.getColor() != unhex("FF808080")) {
 				fill(unhex("FF00E3E3"));
@@ -157,6 +171,7 @@ public class MainApplet extends PApplet{
 	}
 	
 	@SuppressWarnings("deprecation")
+	// change the episode when press key "1" ~ "7"
 	public void keyPressed() {
 		switch(keyEvent.getKeyCode()) {
 			case KeyEvent.VK_1 :
@@ -194,6 +209,7 @@ public class MainApplet extends PApplet{
 		setup();
 	}
 
+	// load the nodes and the links from data
 	private void loadData(){
 		chacArr.clear();
 		JSONObject var;
@@ -227,6 +243,7 @@ public class MainApplet extends PApplet{
 	
 	}
 	
+	// if mouse is on a node and pressed, it means selected a node
 	public void mousePressed(){
 		if(onTheNode){
 			tempChar = nowChar;
@@ -234,6 +251,7 @@ public class MainApplet extends PApplet{
 		
 	}
 	
+	// move the node according the mouse dragged
 	public void mouseDragged(){
 		if(tempChar!=null){
 			tempChar.x = mouseX;
@@ -241,6 +259,9 @@ public class MainApplet extends PApplet{
 		}
 	}
 	
+	// when the mouse is released, check if the node is on the circle or not
+	// if the node is on the circle, it will be added to the circle and re-located
+	// if not, it will go to the origin position of it
 	public void mouseReleased(){
 		if(tempChar != null){
 			 
