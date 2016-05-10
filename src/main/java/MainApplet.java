@@ -47,7 +47,7 @@ public class MainApplet extends PApplet{
 		
 		// initial the bgm
 		minim = new Minim(this);
-		bgm = minim.loadFile(this.getClass().getResource("/main/resources/bgm.mp3").getPath());
+		bgm = minim.loadFile(dataPath("bgm.mp3"));
 		
 		size(width, height);
 		smooth();
